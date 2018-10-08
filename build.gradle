@@ -1,0 +1,43 @@
+apply plugin: 'cpp'
+
+wrapper {
+    gradleVersion = '4.10.2'
+}
+
+model {
+    buildTypes {
+        debug
+        release
+    }
+
+    components {
+        helloWorld (NativeExecutableSpec) {
+            sources {
+                cpp {
+                    source {
+                        srcDir "src/main/cpp"
+                        include "**/*.cpp"
+                    }
+                }
+            }
+
+            binaries.all {
+                if (toolChain instanceof VisualCpp) {
+                    if (buildType == buildTypes.debug) {
+                        cppCompiler.args << "/g"
+                        cppCompiler.args << "/D_DEBUG"
+                    }
+
+                    cppCompiler.args << "/std:c++14"
+                } else {
+                    if (buildType == buildTypes.debug) {
+                        cppCompiler.args << "-g"
+                        cppCompiler.args << "-D_DEBUG"
+                    }
+
+                    cppCompiler.args << "-std=c++14"
+                }
+            }
+        }
+    }
+}
