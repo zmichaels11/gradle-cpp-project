@@ -3,18 +3,18 @@ Example project implementing Hello World C++ using a Gradle build script
 
 ## How to Build
 Run 
-'''bash
+``` bash
 $ ./gradlew assemble
-'''
+```
 
 ## How to Run
 Run either 
-'''bash
+``` bash
 $ ./build/exe/helloWorld/debug/helloWorld 
-'''
+```
 
 or 
 
-'''bash
+``` bash
 $ ./build/exe/helloWorld/release/helloWorld
-'''
+```
